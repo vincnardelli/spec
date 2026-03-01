@@ -7,6 +7,7 @@
 #  1) Load packages and data
 # -------------------------------------------------------------
 library(sf)
+library(sfarrow)
 library(dplyr)
 library(sfarrow)
 library(spdep)

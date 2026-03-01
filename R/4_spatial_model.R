@@ -7,6 +7,7 @@
 #  0) Load required packages
 # -------------------------------------------------------------
 library(sf)          # vector data handling
+library(sfarrow)
 library(spdep)       # spatial dependence tools
 library(spatialreg)  # spatial regression models
 library(ggplot2)     # plotting
