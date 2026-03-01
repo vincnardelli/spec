@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Econometria Spaziale – SPEC 2026</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:    #1a3a5c;
+      --accent:  #c8102e;
+      --light:   #f4f6f9;
+      --border:  #dde2ea;
+      --text:    #1e2532;
+      --muted:   #5a6478;
+    }
+
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--blue);
+      color: #fff;
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+    }
+    header .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .3rem .85rem;
+      border-radius: 2rem;
+      margin-bottom: 1.2rem;
+    }
+    header h1 {
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      max-width: 780px;
+      margin: 0 auto .75rem;
+    }
+    header .subtitle {
+      font-size: 1.05rem;
+      opacity: .85;
+      margin-bottom: 1.8rem;
+    }
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: .85rem 2rem;
+      border-radius: .5rem;
+      transition: background .2s, transform .15s;
+    }
+    .btn-download:hover { background: #a50d25; transform: translateY(-2px); }
+    .btn-download svg { flex-shrink: 0; }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    /* ── INFO GRID ── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1rem;
+    }
+    .info-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: .75rem;
+      padding: 1.25rem 1.4rem;
+    }
+    .info-card .label {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .35rem;
+    }
+    .info-card .value {
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    /* ── SECTION ── */
+    section { background: #fff; border: 1px solid var(--border); border-radius: .75rem; padding: 1.8rem 2rem; }
+    section h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 1.2rem;
+      padding-bottom: .6rem;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+    }
+
+    /* ── PROGRAM ── */
+    .program-part { margin-bottom: 1.4rem; }
+    .program-part:last-child { margin-bottom: 0; }
+    .program-part h3 {
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .6rem;
+    }
+    .program-part ul {
+      list-style: none;
+      padding: 0;
+    }
+    .program-part ul li {
+      padding: .3rem 0 .3rem 1.2rem;
+      position: relative;
+      font-size: .95rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .program-part ul li:last-child { border-bottom: none; }
+    .program-part ul li::before {
+      content: "›";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── INSTRUCTORS ── */
+    .instructors { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: .5rem; }
+    .instructor {
+      flex: 1 1 200px;
+      background: var(--light);
+      border-radius: .5rem;
+      padding: 1rem 1.2rem;
+    }
+    .instructor .role {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .25rem;
+    }
+    .instructor .name {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--blue);
+    }
+
+    /* ── SCRIPTS ── */
+    .script-list { display: grid; gap: .6rem; }
+    .script-item {
+      display: grid;
+      grid-template-columns: 2.2rem 1fr;
+      align-items: start;
+      gap: .6rem;
+    }
+    .script-num {
+      width: 2rem;
+      height: 2rem;
+      background: var(--blue);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 700;
+      border-radius: .35rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .script-info code {
+      font-size: .82rem;
+      background: var(--light);
+      border: 1px solid var(--border);
+      padding: .1rem .4rem;
+      border-radius: .25rem;
+      font-family: "Fira Code", "Cascadia Code", monospace;
+    }
+    .script-info p {
+      font-size: .88rem;
+      color: var(--muted);
+      margin-top: .2rem;
+    }
+
+    /* ── DATASETS ── */
+    .dataset-grid { display: grid; gap: .8rem; }
+    .dataset-item {
+      border: 1px solid var(--border);
+      border-radius: .5rem;
+      padding: .9rem 1.1rem;
+    }
+    .dataset-item code {
+      font-size: .82rem;
+      background: var(--light);
+      border: 1px solid var(--border);
+      padding: .1rem .4rem;
+      border-radius: .25rem;
+      font-family: "Fira Code", "Cascadia Code", monospace;
+    }
+    .dataset-item p { font-size: .88rem; color: var(--muted); margin-top: .3rem; }
+
+    /* ── PACKAGES ── */
+    .pkg-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+    .pkg {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: .35rem;
+      padding: .3rem .75rem;
+      font-family: "Fira Code", "Cascadia Code", monospace;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    /* ── DOWNLOAD CTA ── */
+    .download-cta {
+      background: var(--blue);
+      color: #fff;
+      text-align: center;
+      border-radius: .75rem;
+      padding: 2.4rem 2rem;
+    }
+    .download-cta h2 { color: #fff; border-color: rgba(255,255,255,.3); margin-bottom: .8rem; }
+    .download-cta p { opacity: .85; margin-bottom: 1.5rem; font-size: .95rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: .82rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--blue); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="badge">SPEC 2026</div>
+  <h1>Corso Intensivo di Introduzione all'Econometria Spaziale</h1>
+  <p class="subtitle">2–3 Marzo 2026 &nbsp;·&nbsp; Università Cattolica del Sacro Cuore, Roma</p>
+  <a class="btn-download"
+     href="https://github.com/vincnardelli/spec/archive/refs/heads/main.zip">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+      <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+    </svg>
+    Scarica materiale (ZIP)
+  </a>
+</header>
+
+<!-- ── MAIN ── -->
+<main>
+
+  <!-- Info cards -->
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="label">Date</div>
+      <div class="value">2–3 Marzo 2026</div>
+    </div>
+    <div class="info-card">
+      <div class="label">Sede</div>
+      <div class="value">UCSC Roma – Facoltà di Economia</div>
+    </div>
+    <div class="info-card">
+      <div class="label">Linguaggi</div>
+      <div class="value">R &amp; Python</div>
+    </div>
+    <div class="info-card">
+      <div class="label">Livello</div>
+      <div class="value">Post-graduate / Avanzato</div>
+    </div>
+  </div>
+
+  <!-- Docenti -->
+  <section>
+    <h2>Docenti</h2>
+    <div class="instructors">
+      <div class="instructor">
+        <div class="role">Fondamenti teorici</div>
+        <div class="name">Prof. Giuseppe Arbia</div>
+      </div>
+      <div class="instructor">
+        <div class="role">Applicazioni R &amp; Python</div>
+        <div class="name">Dott. Vincenzo Nardelli</div>
+      </div>
+      <div class="instructor">
+        <div class="role">Applicazioni R &amp; Python</div>
+        <div class="name">Dott. Niccolò Salvini</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Obiettivi -->
+  <section>
+    <h2>Obiettivi del corso</h2>
+    <p>Il corso fornisce un'introduzione ai fondamenti teorici dell'econometria spaziale e alla loro applicazione empirica in R e Python, con esempi su dataset reali per comprenderne l'importanza in economia e nelle scienze sociali. Le due giornate alternano approfondimenti teorici e sessioni pratiche di laboratorio.</p>
+  </section>
+
+  <!-- Programma -->
+  <section>
+    <h2>Programma</h2>
+    <div class="program-part">
+      <h3>Parte I – Introduzione e Teoria</h3>
+      <ul>
+        <li>Strutture dei dati spaziali e tipi di dipendenza spaziale</li>
+        <li>Violazione dell'ipotesi di indipendenza in OLS e conseguenze su stima e inferenza</li>
+        <li>Definizione di matrice di pesi spaziali <strong>W</strong> e tipologie per dati areali</li>
+        <li>Misure globali: Indice di Moran, Indice di Geary</li>
+        <li>Indicatori locali (LISA): cluster ad alta/bassa intensità e outlier spaziali</li>
+        <li>Moran scatterplot e classificazione HH, LL, HL, LH</li>
+        <li>Test diagnostici: LM lag, LM error e versioni robuste</li>
+        <li>Modelli di regressione spaziale: SAR, SEM, SDM, SARAR, GMM</li>
+      </ul>
+    </div>
+    <div class="program-part">
+      <h3>Parte II – Applicazioni</h3>
+      <ul>
+        <li>Esempi su dataset reali per l'interpretazione economica degli spillover</li>
+        <li>Casi studio di health econometrics</li>
+        <li>Stima di modelli spaziali in R e Python</li>
+        <li>Selezione del modello: LM test e confronto SAR / SEM / SARAR</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Script -->
+  <section>
+    <h2>Script R</h2>
+    <div class="script-list">
+      <div class="script-item">
+        <div class="script-num">1</div>
+        <div class="script-info">
+          <code>1_spatial_data.R</code>
+          <p>Caricamento e preparazione dei dati spaziali (Tanzania, King County, griglia H3)</p>
+        </div>
+      </div>
+      <div class="script-item">
+        <div class="script-num">2</div>
+        <div class="script-info">
+          <code>2_maps.R</code>
+          <p>Visualizzazione con mappe tematiche: dati areali, puntuali e a griglia</p>
+        </div>
+      </div>
+      <div class="script-item">
+        <div class="script-num">3</div>
+        <div class="script-info">
+          <code>3_lisa.R</code>
+          <p>Autocorrelazione spaziale globale (Moran's I) e analisi LISA con Moran scatterplot</p>
+        </div>
+      </div>
+      <div class="script-item">
+        <div class="script-num">4</div>
+        <div class="script-info">
+          <code>4_spatial_model.R</code>
+          <p>OLS baseline, test di Moran sui residui, stima del modello SEM</p>
+        </div>
+      </div>
+      <div class="script-item">
+        <div class="script-num">5</div>
+        <div class="script-info">
+          <code>5_spatial_model_selection.R</code>
+          <p>Selezione del modello: LM test robusti, confronto SAR / SEM / SARAR, impatti spaziali</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dataset -->
+  <section>
+    <h2>Dataset</h2>
+    <div class="dataset-grid">
+      <div class="dataset-item">
+        <code>italian_provinces.parquet</code>
+        <p>Province italiane – quota NEET e partecipazione alla formazione continua</p>
+      </div>
+      <div class="dataset-item">
+        <code>kc_house.parquet</code>
+        <p>King County (WA, USA) – prezzi delle abitazioni georeferenziati (dati puntuali)</p>
+      </div>
+      <div class="dataset-item">
+        <code>kc_grid.parquet</code>
+        <p>King County – prezzi medi aggregati su griglia esagonale H3 (risoluzione 8)</p>
+      </div>
+      <div class="dataset-item">
+        <code>tanzania.parquet</code>
+        <p>Tanzania – indicatori demografici e sanitari DHS 2022 a livello sub-nazionale</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pacchetti -->
+  <section>
+    <h2>Pacchetti R richiesti</h2>
+    <div class="pkg-grid">
+      <span class="pkg">sf</span>
+      <span class="pkg">sfarrow</span>
+      <span class="pkg">spdep</span>
+      <span class="pkg">spatialreg</span>
+      <span class="pkg">ggplot2</span>
+      <span class="pkg">dplyr</span>
+      <span class="pkg">h3jsr</span>
+      <span class="pkg">RColorBrewer</span>
+      <span class="pkg">tseries</span>
+    </div>
+  </section>
+
+  <!-- Download CTA -->
+  <div class="download-cta">
+    <h2>Scarica il materiale del corso</h2>
+    <p>Codice R, dati pre-elaborati e dati raw in un unico archivio ZIP.</p>
+    <a class="btn-download"
+       href="https://github.com/vincnardelli/spec/archive/refs/heads/main.zip">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+        <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+      </svg>
+      Scarica ZIP da GitHub
+    </a>
+  </div>
+
+</main>
+
+<footer>
+  <p>
+    Materiale didattico &mdash; Università Cattolica del Sacro Cuore, Roma, 2026
+    &nbsp;·&nbsp;
+    <a href="https://github.com/vincnardelli/spec" target="_blank" rel="noopener">GitHub</a>
+  </p>
+</footer>
+
+</body>
+</html>
