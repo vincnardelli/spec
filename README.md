@@ -2,16 +2,7 @@
 
 **2–3 Marzo 2026 | Università Cattolica del Sacro Cuore – Roma | Facoltà di Economia**
 
----
-
-## Docenti
-
-| Ruolo | Nome |
-|---|---|
-| Professore | Prof. Giuseppe Arbia |
-| Docente applicazioni | Dott. Vincenzo Nardelli |
-| Docente applicazioni | Dott. Niccolò Salvini |
-
+Prof. Giuseppe Arbia  - Dott. Vincenzo Nardelli - Dott. Niccolò Salvini 
 ---
 
 ## Obiettivi del corso
@@ -20,24 +11,41 @@ Il corso fornisce un'introduzione ai fondamenti teorici dell'econometria spazial
 
 ---
 
-## Programma
+## Pacchetti R richiesti
 
-### Parte I – Introduzione e Teoria
+```r
+install.packages(c(
+  "sf",          # dati vettoriali spaziali
+  "sfarrow",     # lettura/scrittura file Parquet per oggetti sf
+  "spdep",       # dipendenza spaziale, pesi, test
+  "spatialreg",  # modelli di regressione spaziale
+  "ggplot2",     # visualizzazione
+  "dplyr",       # manipolazione dati
+  "h3jsr",       # griglia H3
+  "RColorBrewer",# palette colori
+  "tseries"      # serie temporali e test
+))
+```
 
-- Strutture dei dati spaziali e tipi di dipendenza spaziale
-- Violazione dell'ipotesi di indipendenza in OLS e conseguenze su stima e inferenza
-- Definizione di matrice di pesi spaziali **W** e tipologie per dati areali
-- Misure globali: Indice di Moran, Indice di Geary
-- Indicatori locali (**LISA**): cluster ad alta/bassa intensità e outlier spaziali
-- Moran scatterplot e classificazione High–High, Low–Low, High–Low, Low–High
-- Test diagnostici basati su regressione (LM lag, LM error e versioni robuste)
-- Modelli di regressione spaziale: **SAR, SEM, SDM, SARAR, GMM**
+---
 
-### Parte II – Applicazioni
+## Come iniziare
 
-- Esempi su dataset reali per l'interpretazione economica degli spillover
-- Casi studio di health econometrics
-- Stima di modelli spaziali in **R** e **Python**
+1. Clona o scarica il repository
+2. Apri la cartella in RStudio
+3. Installa i pacchetti richiesti (vedi sopra)
+4. Esegui gli script in ordine numerico nella cartella `R/`
+
+> I dati già pre-elaborati si trovano in `data/` in formato Parquet.
+> Lo script `1_spatial_data.R` mostra come sono stati prodotti a partire da `data_raw/`.
+
+---
+
+## Download
+
+Il materiale completo del corso (codice + dati) è scaricabile come archivio ZIP dalla [pagina del corso](https://vincnardelli.github.io/spec) oppure direttamente da GitHub:
+
+[**Scarica ZIP**](https://github.com/vincnardelli/spec/archive/refs/heads/main.zip)
 
 ---
 
@@ -82,44 +90,6 @@ Indicatori demografici e sanitari sub-nazionali da DHS 2022 (livello 2):
 - `FEFRTRWTFR`: tasso di fecondità totale
 - `AHMIGRWEMP`: tasso di migrazione
 - `EDEDUCWSEH`: livello di istruzione femminile
-
----
-
-## Pacchetti R richiesti
-
-```r
-install.packages(c(
-  "sf",          # dati vettoriali spaziali
-  "sfarrow",     # lettura/scrittura file Parquet per oggetti sf
-  "spdep",       # dipendenza spaziale, pesi, test
-  "spatialreg",  # modelli di regressione spaziale
-  "ggplot2",     # visualizzazione
-  "dplyr",       # manipolazione dati
-  "h3jsr",       # griglia H3
-  "RColorBrewer",# palette colori
-  "tseries"      # serie temporali e test
-))
-```
-
----
-
-## Come iniziare
-
-1. Clona o scarica il repository
-2. Apri `spatial_econometrics_course.Rproj` in RStudio
-3. Installa i pacchetti richiesti (vedi sopra)
-4. Esegui gli script in ordine numerico nella cartella `R/`
-
-> I dati già pre-elaborati si trovano in `data/` in formato Parquet.
-> Lo script `1_spatial_data.R` mostra come sono stati prodotti a partire da `data_raw/`.
-
----
-
-## Download
-
-Il materiale completo del corso (codice + dati) è scaricabile come archivio ZIP dalla [pagina del corso](https://vincnardelli.github.io/spec) oppure direttamente da GitHub:
-
-[**Scarica ZIP**](https://github.com/vincnardelli/spec/archive/refs/heads/main.zip)
 
 ---
 
