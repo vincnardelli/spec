@@ -220,6 +220,22 @@
       font-family: "Fira Code", "Cascadia Code", monospace;
     }
     .script-info p { font-size: .88rem; color: var(--muted); margin-top: .2rem; }
+    .colab-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      margin-top: .4rem;
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--teal);
+      text-decoration: none;
+      border: 1px solid var(--teal);
+      padding: .2rem .6rem;
+      border-radius: .3rem;
+      transition: background .2s, color .2s;
+    }
+    .colab-link:hover { background: var(--teal); color: #fff; }
+    .colab-link svg { flex-shrink: 0; }
 
     /* ── DATASETS ── */
     .dataset-grid { display: grid; gap: .8rem; }
@@ -422,6 +438,90 @@
     </div>
   </section>
 
+  <!-- Notebook Python (Colab) -->
+  <section>
+    <h2>Notebook Python (Google Colab)</h2>
+    <div class="script-list">
+      <div class="script-item">
+        <div class="script-num" style="background:var(--teal);">1</div>
+        <div class="script-info">
+          <code>1_spatial_data.ipynb</code>
+          <p>Caricamento e preparazione dei dati spaziali (Tanzania, King County, griglia H3)</p>
+          <a href="#" class="colab-link" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            Apri in Colab
+          </a>
+        </div>
+      </div>
+      <div class="script-item">
+        <div class="script-num" style="background:var(--teal);">2</div>
+        <div class="script-info">
+          <code>2_maps.ipynb</code>
+          <p>Visualizzazione con mappe tematiche: dati areali, puntuali e a griglia</p>
+          <a href="#" class="colab-link" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            Apri in Colab
+          </a>
+        </div>
+      </div>
+      <div class="script-item">
+        <div class="script-num" style="background:var(--teal);">3</div>
+        <div class="script-info">
+          <code>3_lisa.ipynb</code>
+          <p>Autocorrelazione spaziale globale (Moran's I) e analisi LISA con Moran scatterplot</p>
+          <a href="#" class="colab-link" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            Apri in Colab
+          </a>
+        </div>
+      </div>
+      <div class="script-item">
+        <div class="script-num" style="background:var(--teal);">3b</div>
+        <div class="script-info">
+          <code>3_lisa_h3.ipynb</code>
+          <p>LISA su griglia esagonale H3 (King County – log price)</p>
+          <a href="#" class="colab-link" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            Apri in Colab
+          </a>
+        </div>
+      </div>
+      <div class="script-item">
+        <div class="script-num" style="background:var(--teal);">3c</div>
+        <div class="script-info">
+          <code>3_lisa_visium_hne.ipynb</code>
+          <p>LISA su dati puntuali con pesi kNN (Visium HNE)</p>
+          <a href="#" class="colab-link" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            Apri in Colab
+          </a>
+        </div>
+      </div>
+      <div class="script-item">
+        <div class="script-num" style="background:var(--teal);">4</div>
+        <div class="script-info">
+          <code>4_spatial_model.ipynb</code>
+          <p>OLS baseline, test di Moran sui residui, stima del modello SEM</p>
+          <a href="#" class="colab-link" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            Apri in Colab
+          </a>
+        </div>
+      </div>
+      <div class="script-item">
+        <div class="script-num" style="background:var(--teal);">5</div>
+        <div class="script-info">
+          <code>5_spatial_model_selection.ipynb</code>
+          <p>Selezione del modello: LM test robusti, confronto SAR / SEM / SARAR, impatti spaziali</p>
+          <a href="#" class="colab-link" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            Apri in Colab
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Dataset -->
   <section>
     <h2>Dataset</h2>
@@ -458,6 +558,22 @@
       <span class="pkg">h3jsr</span>
       <span class="pkg">RColorBrewer</span>
       <span class="pkg">tseries</span>
+    </div>
+  </section>
+
+  <!-- Pacchetti Python -->
+  <section>
+    <h2>Pacchetti Python richiesti</h2>
+    <div class="pkg-grid">
+      <span class="pkg" style="color:var(--teal);">geopandas</span>
+      <span class="pkg" style="color:var(--teal);">libpysal</span>
+      <span class="pkg" style="color:var(--teal);">esda</span>
+      <span class="pkg" style="color:var(--teal);">spreg</span>
+      <span class="pkg" style="color:var(--teal);">splot</span>
+      <span class="pkg" style="color:var(--teal);">matplotlib</span>
+      <span class="pkg" style="color:var(--teal);">h3</span>
+      <span class="pkg" style="color:var(--teal);">mapclassify</span>
+      <span class="pkg" style="color:var(--teal);">pyarrow</span>
     </div>
   </section>
 
